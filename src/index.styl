@@ -1,0 +1,45 @@
+.pdl-layout > div[data-type=layout]
+  display: grid
+  grid-template-columns: 1fr fit-content(8em)
+  grid-template-rows: 1fr
+  padding: .5em
+  .pdl-cell[data-name=view]
+    grid-column: 1
+    grid-row: 1
+    min-width: 0
+    min-height: 0
+  .pdl-cell[data-name=legend]
+    grid-column: 2
+    grid-row: 1
+    padding-left: 1em
+
+.pdl-layout.legend-bottom > div[data-type=layout]
+  grid-template-columns: 1fr
+  grid-template-rows: 1fr fit-content(4em)
+  .pdl-cell[data-name=legend]
+    grid-column: 1
+    grid-row: 2
+    padding-left: 0
+    padding-top: .5em
+
+[data-name=legend]
+  font-size: .8em
+
+.s-label, .s-header
+  user-select: none
+
+.s-header
+  pointer-events: none
+
+.s-hit path
+  pointer-events: stroke
+
+.s-leader path, .s-inner
+  pointer-events: none
+
+/* hover 一個項目時其他淡化. 不用 css transition, 否則 opacity 屬性補間會被延遲, 逐格錄影對不上 */
+.slope-hover .s-item:not(.hl)
+  opacity: var(--slope-dim, .15)
+
+.slope-hover .s-item.hl
+  opacity: 1

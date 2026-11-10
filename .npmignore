@@ -1,0 +1,6 @@
+.*.swp
+secret.*
+*.key
+node_modules
+test
+context
