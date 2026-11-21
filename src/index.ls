@@ -163,60 +163,60 @@ mod = ({context, t}) ->
     c.tip.format.default = \.3~s
     own =
       coloring:
-        mode: type: \choice, values: <[trend palette category]>, default: \trend
+        mode: type: \choice, values: <[trend palette category]>, default: \trend, desc: {en: "what decides line colors: trend by increase / decrease / no change, palette a palette color per item, category by the category field ( palette when it isn't bound )", "zh-TW": "線條顏色依據什麼決定：trend 依上升 / 下降 / 持平，palette 每個項目一個調色盤顏色，category 依分類欄位 ( 沒有綁定時改用 palette )"}
       trend:
         increase: type: \color, default: '#0f9d76'
         decrease: type: \color, default: '#e4572e'
-        flat: type: \color, default: '#7a8792'
-        threshold: type: \number, default: 0, min: 0, step: 0.01
+        flat: type: \color, default: '#7a8792', desc: {en: "color of lines with no change; in category mode, also of items without a category", "zh-TW": "持平線條的顏色；category 模式下沒有分類的項目也用這個顏色"}
+        threshold: type: \number, default: 0, min: 0, step: 0.01, desc: {en: "changes no larger than this, in data units, count as no change", "zh-TW": "變化量不超過這個值 ( 資料的單位 ) 就算持平"}
       line:
-        mode: type: \choice, values: <[linear curve]>, default: \linear
-        stroke-width: type: \number, default: 2, min: 0.25, max: 20, step: 0.25
-        opacity: type: \number, default: 0.85, min: 0, max: 1, step: 0.05
-        missing: type: \choice, values: <[gap connect]>, default: \gap
+        mode: type: \choice, values: <[linear curve]>, default: \linear, desc: {en: "linear draws straight lines between columns, curve draws smooth S-curves", "zh-TW": "linear 欄與欄之間畫直線，curve 畫平滑的 S 形曲線"}
+        stroke-width: type: \number, default: 2, min: 0.25, max: 20, step: 0.25, desc: {en: "width of the lines, in px; emphasized lines are 1.5 times as wide", "zh-TW": "線條的粗細 ( px )；強調的線條是 1.5 倍"}
+        opacity: type: \number, default: 0.85, min: 0, max: 1, step: 0.05, desc: {en: "opacity of the lines ( 0 to 1 )", "zh-TW": "線條的不透明度 ( 0 到 1 )"}
+        missing: type: \choice, values: <[gap connect]>, default: \gap, desc: {en: "when an item has no value in a column: gap breaks the line there, connect joins the columns on either side", "zh-TW": "項目在某一欄缺值時：gap 在該處斷開，connect 直接連到下一個有值的欄"}
       dot:
         show: type: \boolean, default: true
-        size: type: \number, default: 3.5, min: 0.5, max: 30, step: 0.5
+        size: type: \number, default: 3.5, min: 0.5, max: 30, step: 0.5, desc: {en: "radius of the dots, in px", "zh-TW": "資料點的半徑 ( px )"}
       label:
         # 不用 name / value 當 key: konfig 把 name 當群組的顯示名稱讀
         left:
-          show-name: type: \boolean, default: true
-          show-value: type: \boolean, default: true
+          show-name: type: \boolean, default: true, desc: {en: "show item names beside the first column", "zh-TW": "在第一欄旁顯示項目名稱"}
+          show-value: type: \boolean, default: true, desc: {en: "show values beside the first column", "zh-TW": "在第一欄旁顯示數值"}
         right:
-          show-name: type: \boolean, default: true
-          show-value: type: \boolean, default: true
-        middle: type: \boolean, default: true
-        size: type: \number, default: 0.8, min: 0.3, max: 4, step: 0.05
-        format: type: \format, default: \.3~s
-        dodge: type: \boolean, default: true
-        leader: type: \boolean, default: true
-        padding: type: \number, default: 5, min: 0, max: 50, step: 1
-        color: type: \choice, values: <[text line]>, default: \text
-        rank: type: \boolean, default: false
+          show-name: type: \boolean, default: true, desc: {en: "show item names beside the last column", "zh-TW": "在最後一欄旁顯示項目名稱"}
+          show-value: type: \boolean, default: true, desc: {en: "show values beside the last column", "zh-TW": "在最後一欄旁顯示數值"}
+        middle: type: \boolean, default: true, desc: {en: "also show values on the columns in between, when there is room", "zh-TW": "中間的欄也顯示數值 ( 放得下時 )"}
+        size: type: \number, default: 0.8, min: 0.3, max: 4, step: 0.05, desc: {en: "label font size, in em of the chart font", "zh-TW": "標籤的字級 ( 相對於圖表字級的 em )"}
+        format: type: \format, default: \.3~s, desc: {en: "number format of the values in labels", "zh-TW": "標籤裡數值的格式"}
+        dodge: type: \boolean, default: true, desc: {en: "push overlapping labels apart; labels that don't fit are dropped, emphasized and larger changes kept first", "zh-TW": "把重疊的標籤推開；放不下的標籤會拿掉，優先保留強調的與變化大的"}
+        leader: type: \boolean, default: true, desc: {en: "draw a thin line from a moved label back to its point", "zh-TW": "標籤被推離原位時，畫一條細線連回資料點"}
+        padding: type: \number, default: 5, min: 0, max: 50, step: 1, desc: {en: "space between a dot and its label, in px", "zh-TW": "資料點與標籤之間的距離 ( px )"}
+        color: type: \choice, values: <[text line]>, default: \text, desc: {en: "text uses the normal text color, line uses the color of the item's line", "zh-TW": "text 用一般文字顏色，line 用該項目線條的顏色"}
+        rank: type: \boolean, default: false, desc: {en: "show the rank ( #1, #2 ... ) instead of the value; only with scale mode rank", "zh-TW": "以名次 ( #1、#2 … ) 取代數值；只在比例模式為 rank 時有作用"}
       header:
-        show: type: \boolean, default: true
-        size: type: \number, default: 0.9, min: 0.3, max: 4, step: 0.05
+        show: type: \boolean, default: true, desc: {en: "show the field names above the columns", "zh-TW": "在各欄上方顯示欄位名稱"}
+        size: type: \number, default: 0.9, min: 0.3, max: 4, step: 0.05, desc: {en: "font size of the column headers, in em of the chart font", "zh-TW": "欄標題的字級 ( 相對於圖表字級的 em )"}
         color: type: \color, default: \currentColor
       baseline:
-        show: type: \boolean, default: true
+        show: type: \boolean, default: true, desc: {en: "draw a vertical line at each column", "zh-TW": "在每一欄畫一條垂直線"}
         color: type: \color, default: \currentColor
-        opacity: type: \number, default: 0.25, min: 0, max: 1, step: 0.05
-        width: type: \number, default: 1, min: 0.25, max: 10, step: 0.25
+        opacity: type: \number, default: 0.25, min: 0, max: 1, step: 0.05, desc: {en: "opacity of the column lines ( 0 to 1 )", "zh-TW": "欄位垂直線的不透明度 ( 0 到 1 )"}
+        width: type: \number, default: 1, min: 0.25, max: 10, step: 0.25, desc: {en: "width of the column lines, in px", "zh-TW": "欄位垂直線的粗細 ( px )"}
       scale:
-        mode: type: \choice, values: <[linear rank]>, default: \linear
-        include-zero: type: \boolean, default: false
-        reverse: type: \boolean, default: false
+        mode: type: \choice, values: <[linear rank]>, default: \linear, desc: {en: "vertical position by value ( linear ), or by rank within each column ( rank, equal values share a rank )", "zh-TW": "垂直位置依數值 ( linear )，或依各欄內的名次 ( rank，同值同名次 )"}
+        include-zero: type: \boolean, default: false, desc: {en: "extend the value range to include 0; linear mode only", "zh-TW": "數值範圍延伸到包含 0；只在 linear 模式有作用"}
+        reverse: type: \boolean, default: false, desc: {en: "put smaller values on top; in rank mode the smallest value ranks first", "zh-TW": "較小的值放上面；rank 模式下最小的值排第一名"}
       hover:
-        enabled: type: \boolean, default: true
-        dim: type: \number, default: 0.15, min: 0, max: 1, step: 0.05
+        enabled: type: \boolean, default: true, desc: {en: "on hover, highlight the item and dim the others", "zh-TW": "滑鼠移過時突顯該項目，其他項目變淡"}
+        dim: type: \number, default: 0.15, min: 0, max: 1, step: 0.05, desc: {en: "opacity of the other items while hovering ( 0 to 1 )", "zh-TW": "滑過時其他項目的不透明度 ( 0 到 1 )"}
       emphasis:
-        mode: type: \choice, values: <[none increase decrease largest names]>, default: \none
-        names: type: \text, default: ''
-        count: type: \number, default: 3, min: 1, max: 100, step: 1
-        dim: type: \number, default: 0.25, min: 0, max: 1, step: 0.05
+        mode: type: \choice, values: <[none increase decrease largest names]>, default: \none, desc: {en: "which items to emphasize ( thicker line, bold name, drawn on top ): those going up, going down, the largest changes, or the names listed below", "zh-TW": "要強調哪些項目 ( 線較粗、名稱加粗、畫在最上層 )：上升的、下降的、變化最大的，或下方列出名稱的"}
+        names: type: \text, default: '', desc: {en: "names to emphasize in names mode, separated by commas or new lines", "zh-TW": "names 模式下要強調的項目名稱，以逗號或換行分隔"}
+        count: type: \number, default: 3, min: 1, max: 100, step: 1, desc: {en: "how many of the largest changes to emphasize in largest mode", "zh-TW": "largest 模式下強調變化最大的幾個項目"}
+        dim: type: \number, default: 0.25, min: 0, max: 1, step: 0.05, desc: {en: "opacity of the items that are not emphasized ( 0 to 1 )", "zh-TW": "未被強調的項目的不透明度 ( 0 到 1 )"}
       animation:
         enabled: type: \boolean, default: true
-        duration: type: \number, default: 350, min: 0, max: 5000, step: 50
+        duration: type: \number, default: 350, min: 0, max: 5000, step: 50, desc: {en: "length of the transitions, in ms", "zh-TW": "轉場動畫的時長 ( 毫秒 )"}
     c <<< localize(own)
   dimension:
     name: {type: \N, name: "name", priority: 1}
