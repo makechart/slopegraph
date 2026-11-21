@@ -1,5 +1,9 @@
 # Change Logs
 
+## v0.0.2
+
+ - add `desc` ( en / zh-TW ) to the config items, shown under the label in the makechart style panel
+
 ## v0.0.1
 
  - init release: slopegraph on the lite base ( no d3 ), tweens go through `chart.anim`
