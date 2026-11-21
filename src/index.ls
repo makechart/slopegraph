@@ -218,6 +218,21 @@ mod = ({context, t}) ->
         enabled: type: \boolean, default: true
         duration: type: \number, default: 350, min: 0, max: 5000, step: 50, desc: {en: "length of the transitions, in ms", "zh-TW": "轉場動畫的時長 ( 毫秒 )"}
     c <<< localize(own)
+  # 段落 ( tab ) 的說明, key 是段落的路徑. preset 的段落由 chart.utils.config.tabinfo 掛上來, 共用的 common 由核心補
+  tabinfo: chart.utils.config.tabinfo({legend: \legend, tip: \tip}) <<<
+    coloring: desc: {en: "what decides the color of each line", "zh-TW": "決定每條線顏色的方式"}
+    trend: desc: {en: "colors for lines going up, going down or staying flat, and what counts as flat", "zh-TW": "上升、下降與持平線條的顏色，以及多小的變化算持平"}
+    line: desc: {en: "the lines connecting the columns", "zh-TW": "連接各欄的線條"}
+    dot: desc: {en: "dots at each value", "zh-TW": "每個數值上的資料點"}
+    label: desc: {en: "names and values written beside the columns", "zh-TW": "寫在各欄旁的名稱與數值"}
+    "label/left": desc: {en: "labels beside the first column", "zh-TW": "第一欄旁的標籤"}
+    "label/right": desc: {en: "labels beside the last column", "zh-TW": "最後一欄旁的標籤"}
+    header: desc: {en: "the field names above the columns", "zh-TW": "各欄上方的欄位名稱"}
+    baseline: desc: {en: "the vertical line drawn at each column", "zh-TW": "每一欄的垂直線"}
+    scale: desc: {en: "how values map to vertical positions", "zh-TW": "數值怎麼對應到垂直位置"}
+    hover: desc: {en: "highlighting an item when hovering over it", "zh-TW": "滑鼠移過時突顯項目"}
+    emphasis: desc: {en: "items drawn emphasized, with the others dimmed", "zh-TW": "要強調的項目，其他項目會變淡"}
+    animation: desc: {en: "transitions when the data or settings change", "zh-TW": "資料或設定變動時的轉場動畫"}
   dimension:
     name: {type: \N, name: "name", priority: 1}
     value: {type: \R, multiple: true, name: "value", priority: 2}
